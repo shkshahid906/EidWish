@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eid Mubarak</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="loader-moon">
+        <i class="fas fa-moon"></i>
+      </div>
+      <div class="orbiting-stars">
+        <div class="star-orbit" style="animation-duration: 3s;"><i class="fas fa-star"></i></div>
+        <div class="star-orbit" style="animation-duration: 3.5s; transform: rotate(72deg);"><i class="fas fa-star"></i></div>
+        <div class="star-orbit" style="animation-duration: 4s; transform: rotate(144deg);"><i class="fas fa-star"></i></div>
+        <div class="star-orbit" style="animation-duration: 4.5s; transform: rotate(216deg);"><i class="fas fa-star"></i></div>
+        <div class="star-orbit" style="animation-duration: 5s; transform: rotate(288deg);"><i class="fas fa-star"></i></div>
+      </div>
+      <h2 class="loader-text">Eid Mubarak</h2>
+      <div class="loader-dots">
+        <div class="loader-dot" style="animation-delay: 0s;"></div>
+        <div class="loader-dot" style="animation-delay: 0.2s;"></div>
+        <div class="loader-dot" style="animation-delay: 0.4s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div id="floating-elements" class="floating-elements"></div>
+    <div class="content">
+      <header class="header fade-in">
+        <div class="title-container">
+          <i class="fas fa-moon moon-icon"></i>
+          <h1 class="title">Eid Mubarak </h1>
+          <i class="fas fa-star star-icon"></i>
+        </div>
+        <p class="subtitle">
+          May this blessed occasion bring joy, peace, and prosperity to you and your loved ones
+        </p>
+      </header>
+
+      <div class="grid-container">
+        <div class="wishes-section">
+          <div class="wishes-card">
+            <h2 class="section-title">Eid Wishes by Sheikh</h2>
+            <div id="wishes-carousel" class="wishes-carousel">
+              <p class="wish-text fade-in"></p>
+              <div class="carousel-controls">
+                <button id="prev-wish" class="carousel-button">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <div id="carousel-indicators" class="carousel-indicators"></div>
+                <button id="next-wish" class="carousel-button">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="qr-section slide-up">
+          <div class="qr-card">
+            <div class="qr-header">
+              <h3 class="qr-title">Send Eidi <img src="./give-money.png" alt="Eidi" id="eidi"></h3>
+              <p class="qr-description">Scan the QR code or copy the UPI ID below</p>
+            </div>
+            <div class="qr-content">
+              <div class="qr-code-container">
+                <div class="qr-code">
+                  <img src="./QREIDI-removebg-preview.png" alt="QR Code for Eidi payment">
+                </div>
+                <div class="qr-badge">Eidi</div>
+              </div>
+            </div>
+            <div class="qr-footer">
+              <p class="upi-id">UPI ID: shkshaadu@oksbi</p>
+              <button id="copy-upi" class="copy-button">
+                <i class="fas fa-copy"></i> Copy UPI ID
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer class="footer">
+        <p class="footer-text">
+          ✨ Wishing you and your family a blessed Eid filled with love and happiness ✨
+        </p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        //Loader animation with GSAP
+        gsap.fromTo('.loader-moon i', {opacity:0, scale:0.5}, {opacity:1, scale:1, duration: 1, ease: "power2.out"});
+        gsap.fromTo('.orbiting-stars', {opacity:0, scale:0.5}, {opacity:1, scale:1, duration: 1, delay: 0.3, ease: "power2.out"});
+        gsap.fromTo('.loader-text', {opacity:0, y:20}, {opacity:1, y:0, duration: 0.8, delay: 0.6, ease: "power2.out"});
+        gsap.fromTo('.loader-dot', {opacity:0, y:20}, {opacity:1, y:0, duration: 0.8, delay: 0.8, stagger: 0.2, ease: "power2.out"});
+
+        gsap.to('#loader', {opacity:0, duration: 0.8, delay: 2.5, onComplete: () => {
+        document.getElementById('loader').style.display = 'none';
+        }});
+
+        //Main content animations with GSAP
+        gsap.fromTo('.header', {opacity:0, y:-50}, {opacity:1, y:0, duration: 1, delay: 2.8, ease: "power2.out"});
+        gsap.fromTo('.wishes-section', {opacity:0, x:-50}, {opacity:1, x:0, duration: 1, delay: 3, ease: "power2.out"});
+        gsap.fromTo('.qr-section', {opacity:0, x:50}, {opacity:1, x:0, duration: 1, delay: 3.2, ease: "power2.out"});
+        gsap.fromTo('.footer', {opacity:0, y:50}, {opacity:1, y:0, duration: 1, delay: 3.4, ease: "power2.out"});
+
+        //QR Section animations
+        gsap.fromTo('.qr-header', {opacity:0, y:-20}, {opacity:1, y:0, duration: 0.6, delay: 3.6, ease: "power2.out"});
+        gsap.fromTo('.qr-content', {opacity:0, scale: 0.8}, {opacity:1, scale: 1, duration: 0.6, delay: 3.8, ease: "power2.out"});
+        gsap.fromTo('.qr-footer', {opacity:0, y:20}, {opacity:1, y:0, duration: 0.6, delay: 4, ease: "power2.out"});
+
+    });
+  </script>
+</body>
+</html>
